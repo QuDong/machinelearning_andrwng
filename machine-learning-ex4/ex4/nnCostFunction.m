@@ -75,9 +75,9 @@ for i = 1:length(y)
     yv(i,:) = y(i) == [1:num_labels];
 end    
 
-J = sum((- yv .* log(hx) - (1 - yv) .* log(1 - hx))(:)) * (1 / m); % element wise .* 
+J = sum(sum((- yv .* log(hx) - (1 - yv) .* log(1 - hx)))) * (1 / m); % element wise .* 
 
-Regularized = lambda * (sum((Theta1(:,2:end) .^2)(:)) + sum((Theta2(:,2:end) .^2)(:))) / (2 * m);
+Regularized = lambda * (sum(sum((Theta1(:,2:end) .^2))) + sum(sum((Theta2(:,2:end) .^2)))) / (2 * m);
 
 J = J + Regularized;
 
@@ -85,7 +85,8 @@ J = J + Regularized;
 
 delta3 = hx - yv;
 
-delta2 = (delta3 * Theta2)(:,2:end) .* sigmoidGradient(z2);
+temp = (delta3 * Theta2);
+delta2 = temp(:,2:end) .* sigmoidGradient(z2);
 
 Theta1_grad = (delta2' * X) / m + lambda * [zeros(size(Theta1, 1), 1) , Theta1(:,2:end)] / m ;
 Theta2_grad = (delta3' * a2) / m + lambda * [zeros(size(Theta2, 1), 1) , Theta2(:,2:end)] / m;
