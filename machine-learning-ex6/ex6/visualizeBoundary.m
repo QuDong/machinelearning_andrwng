@@ -18,7 +18,8 @@ end
 
 % Plot the SVM boundary
 hold on
-contour(X1, X2, vals, [0 0], 'LineColor', 'b'); # BUG FIX
+contour(X1, X2, vals); # BUG FIX
+%contour(X1, X2, vals, [0 0], 'LineColor', 'b'); # BUG FIX
 hold off;
 
 end

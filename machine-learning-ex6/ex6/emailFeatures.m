@@ -47,14 +47,14 @@ x = zeros(n, 1);
 %              x = [ 0 0 0 0 1 0 0 0 ... 0 0 0 0 1 ... 0 0 0 1 0 ..];
 %
 %
+vocabList = getVocabList();
+n = length(vocabList);
+m = length(word_indices);
 
-
-
-
-
-
-
-
+for i = 1:m
+    idx = word_indices(i);
+    x(idx) = 1;
+end   
 % =========================================================================
     
 
