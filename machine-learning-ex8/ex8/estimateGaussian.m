@@ -21,7 +21,8 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 mu = mean(X, 1)';
-sigma2 = sum((X - mu') .^ 2) / m; 
+% sigma2 = sum((X - mu') .^ 2) / m; % Octave can
+sigma2 = var(X)' * (m - 1) / m; 
 % =============================================================
 
 end
